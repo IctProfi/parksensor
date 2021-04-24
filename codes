@@ -1,0 +1,75 @@
+int buzzer=7;
+int red=8;
+int red2=9;
+int red3=10;
+int red4=11;
+int echo=3;
+int trig=2;
+int distance;
+int time;
+
+void setup() {
+  pinMode(8, OUTPUT);
+  pinMode(9, OUTPUT);
+  pinMode(10, OUTPUT);
+  pinMode(11, OUTPUT);
+  pinMode(trig,OUTPUT);
+  pinMode(echo,INPUT);
+  pinMode(buzzer,OUTPUT);
+}
+
+
+void loop() {
+  digitalWrite(trig,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig,LOW);
+
+  time=pulseIn(echo,HIGH);
+  distance=(time*0.034)/2;
+
+  if(distance>80)
+  {
+  	noTone(buzzer);
+    digitalWrite(red,HIGH);
+    delay(500);
+    digitalWrite(red,LOW);
+    delay(300);
+  }
+  
+  else if(distance>60)
+  {
+    digitalWrite(red,HIGH);
+    delay(500);
+    digitalWrite(red,LOW);
+    delay(300);
+    
+    tone(buzzer,1200);
+    }else if(distance>40) 
+    {
+      digitalWrite(red,HIGH);
+      digitalWrite(red2,HIGH);
+    delay(500);
+    digitalWrite(red,LOW);
+    digitalWrite(red2,LOW);
+      delay(300);
+      tone(buzzer,1200);
+      delay(200);
+      tone(buzzer,900);
+      }else if (distance>30)
+  {
+   digitalWrite(red,HIGH);
+   digitalWrite(red2,HIGH);
+    digitalWrite(red3,HIGH);
+    delay(500);
+    digitalWrite(red,LOW);
+    digitalWrite(red2,LOW);
+    digitalWrite(red3,LOW);
+      delay(300);
+      tone(buzzer,1200);
+      delay(200);
+      tone(buzzer,900);
+    delay(200);
+    tone(buzzer,500);
+  }
+  
+}
